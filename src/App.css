@@ -1,0 +1,36 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  /* text-align: center; */
+}
+.movie-poster{
+  width: 350px;
+  height: 640px;
+  object-fit: cover;
+}
+.movie-des{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.movie-container{
+  width:350px;
+  /* background: orange; */
+}
+.movie-title {
+  margin:0;
+  font-size :24px;
+}
+.movie-rating{
+  font-size:20px;
+}
+.movie-sum{
+  margin:0;
+}
+.movie-list{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
