@@ -101,9 +101,10 @@ function Movie({movie}) {
     color: movie.rating > 8.5 ? "green" : "crimson"
   }
   const [show, setShow] =useState(true)
-  const summarytoggles = {
-    display: show ? "block" : "none"
-  }
+  //  =============  conditional styling ===================
+  // const summarytoggles = {
+  //   display: show ? "block" : "none"
+  // }
   return (
     <div className="movie-container">
       <img src={movie.poster} className="movie-poster" alt="" />
@@ -112,7 +113,11 @@ function Movie({movie}) {
         <p style={styles} className="movie-rating">⭐{movie.rating}</p>
       </div>
       <button onClick={()=> setShow(!show)}> Toggle Summary</button>
-      <p style ={summarytoggles} className="movie-sum">{movie.summary}</p>
+      {/* ================ Conditional styling (styling only updated)=====================*/}
+      {/* <p style ={summarytoggles} className="movie-sum">{movie.summary}</p> */}
+
+      {/* ================ Conditional rendering (remove element from DOM)=================== */}
+      {show ? <p className="movie-sum">{movie.summary}</p> : null}
     </div>
   );
 }
