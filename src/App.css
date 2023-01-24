@@ -34,3 +34,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.add-movie-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 5px;
+  max-width: 500px;
+  margin: 10px auto;
+}
