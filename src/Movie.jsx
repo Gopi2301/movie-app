@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
-
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
 export function Movie({ movie }) {
   // const movie = {
   //   name: "Vikram",
@@ -19,8 +21,9 @@ export function Movie({ movie }) {
   //   display: show ? "block" : "none"
   // }
   return (
-    <div className="movie-container">
+    <Card className="movie-container">
       <img src={movie.poster} className="movie-poster" alt="" />
+     <CardContent>
       <div className="movie-des">
         <h2 className="movie-title">{movie.name}</h2>
         <p style={styles} className="movie-rating">
@@ -33,7 +36,8 @@ export function Movie({ movie }) {
 
       {/* ================ Conditional rendering (remove element from DOM)=================== */}
       {show ? <p className="movie-sum">{movie.summary}</p> : null}
-      <Counter />
-    </div>
+      </CardContent>
+      <CardActions> <Counter /> </CardActions>
+    </Card>
   );
 }
