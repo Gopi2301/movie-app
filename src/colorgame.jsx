@@ -13,8 +13,8 @@ function ColorGame() {
           style={styles}
           onChange={(event) => setcolor(event.target.value)}
         />
-        {ColorList.map((ele) => (
-          <ColorBox clr={ele} />
+        {ColorList.map((ele,index) => (
+          <ColorBox key={index}clr={ele} />
         ))}
       </div>
     );
