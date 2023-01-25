@@ -1,7 +1,10 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
-
+import { ColorGame } from "./colorgame";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Badge from '@mui/material/Badge';
 function App() {
   return (
     <div className="App">
@@ -108,11 +111,12 @@ const [Summary, setSummary] = useState ("")
   return (
     <div>
       <div className="add-movie-form">
-        <input type="text" onChange= {(event)=> setName(event.target.value)} placeholder="Name"/>
-        <input type="text" onChange= {(event)=> setRating(event.target.value)}placeholder="Rating"/>
-        <input type="text" onChange= {(event)=> setPoster(event.target.value)}placeholder="Poster"/>
-        <input type="text" onChange= {(event)=> setSummary(event.target.value)}placeholder="Summary"/>
-        <button onClick={()=>{
+      <TextField onChange= {(event)=> setName(event.target.value)} label="Name" variant="outlined" />
+      <TextField onChange= {(event)=> setRating(event.target.value)} label="Rating" variant="outlined" />
+      <TextField onChange= {(event)=> setPoster(event.target.value)} label="Poster" variant="outlined" />
+      <TextField onChange= {(event)=> setSummary(event.target.value)} label="Summary" variant="outlined" />
+
+      <Button variant="contained" onClick={()=>{
          const newMovie ={ 
           name: Name,
           poster: Poster,
@@ -120,7 +124,8 @@ const [Summary, setSummary] = useState ("")
           summary: Summary
          }
          setmovieList([...movieList, newMovie])
-        }}>Add Movie</button>
+        }}>Add Movie</Button>
+        {/* <button >Add Movie</button> */}
       </div>
       <div className="movie-list">
         {movieList.map((mv) => (
@@ -162,37 +167,31 @@ function Movie({ movie }) {
 
       {/* ================ Conditional rendering (remove element from DOM)=================== */}
       {show ? <p className="movie-sum">{movie.summary}</p> : null}
+      <Counter />
     </div>
   );
 }
-function ColorGame() {
-  const [color, setcolor] = useState("green");
-  const styles = {
-    background: color,
-  };
-  const ColorList = ["green", "crimson", "skyblue"];
+function Counter (){
+  const [countLike, setCountLike] =useState(0)
+  const [countDisLike, setCountDisLike] =useState(0)
 
+  const HandleClick1 =()=>{
+    setCountLike(countLike+1)
+  }
+  const HandleClick2 =()=>{
+    setCountDisLike(countDisLike+1)
+  }
+  
   return (
     <div>
-      <input
-        type="text"
-        style={styles}
-        onChange={(event) => setcolor(event.target.value)}
-      />
-      {ColorList.map((ele) => (
-        <ColorBox clr={ele} />
-      ))}
+       
+      <button onClick={HandleClick1}>👍 <Badge badgeContent={countLike} color="secondary"></Badge>{countLike}</button>
+      <button onClick={HandleClick2}>👎 <Badge badgeContent={countDisLike} color="error"></Badge>{countDisLike}</button>
+
+
     </div>
-  );
-}
-function ColorBox({ clr }) {
-  const styles = {
-    width: "250px",
-    heigth: "50px",
-    margin: "5px 0",
-    background: clr,
-  };
-  return <div style={styles}>hi</div>;
+    
+  )
 }
 
 export default App;
