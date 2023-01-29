@@ -3,7 +3,12 @@ import { Counter } from "./Counter";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-export function Movie({ movie }) {
+import InfoIcon from '@mui/icons-material/Info';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { Navigate, useNavigate } from "react-router-dom";
+
+export function Movie({ movie , id}) {
   // const movie = {
   //   name: "Vikram",
   //   poster:
@@ -20,6 +25,7 @@ export function Movie({ movie }) {
   // const summarytoggles = {
   //   display: show ? "block" : "none"
   // }
+  const navigate =useNavigate();
   return (
     <Card className="movie-container">
       <img src={movie.poster} className="movie-poster" alt="" />
@@ -30,7 +36,10 @@ export function Movie({ movie }) {
           ⭐{movie.rating}
         </p>
       </div>
-      <button onClick={() => setShow(!show)}> Toggle Summary</button>
+
+      
+      <button color="primary" onClick={() => setShow(!show)}>{show? <ExpandLessIcon />:<ExpandMoreIcon />} </button>
+      <InfoIcon onClick={()=>navigate(`/movies/${id}`)} />
       {/* ================ Conditional styling (styling only updated)=====================*/}
       {/* <p style ={summarytoggles} className="movie-sum">{movie.summary}</p> */}
 
