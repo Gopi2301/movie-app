@@ -1,9 +1,14 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width: 1280px; */
+  width:100%;
+  margin: 0 0;
+  /* padding: 2rem; */
   /* text-align: center; */
 } 
+body {
+  margin: 0px;
+}
+
 .movie-poster{
   width: 350px;
   height: 640px;
@@ -28,6 +33,9 @@
 }
 .movie-sum{
   margin:0;
+}
+.buttonGroup {
+  justify-content: center;
 }
 .movie-list{
   display: flex;
