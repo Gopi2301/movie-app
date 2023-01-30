@@ -3,14 +3,19 @@ import "./App.css";
 import { ColorGame } from "./colorgame";
 import { MovieList } from "./MovieList";
 import { TicTakToe } from "./TicTakToe";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { Notfound } from "./Notfound";
 import { Home } from "./Home";
 import { useState } from "react";
 import { MovieDetails } from "./MovieDetails";
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 function App() {
+ 
   const [movieList, setmovieList] = useState([
     {
       "id": "99",
@@ -101,25 +106,34 @@ function App() {
       "id": "109"
     }
   ]);
+  const [mode, setMode]=useState("dark")
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });  
+  const Navigate =useNavigate()
+ const bgStyles = {
+  borderRadius: "0px",
+  minHeight: "100vh",
+ }
   return (
+    <ThemeProvider theme={darkTheme}>
+      <Paper  style ={bgStyles} elevation={4}>
     <div className="App">
-      {/* Navbar  */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/tic-tak-toe">Tic-Tak-Toe</Link>
-          </li>
-          <li>
-            <Link to="/movies">Movies</Link>
-          </li>
-          <li>
-            <Link to="/colorGame">Color Game</Link>
-          </li>
-        </ul>
-      </nav>
+       <AppBar position="static">
+        <Toolbar>
+          <Button onClick={()=>Navigate("/")} color="inherit">Home</Button>
+          <Button onClick={()=>Navigate("/tic-tak-toe")} color="inherit">Tic-Tak-Toe</Button>
+          <Button onClick={()=>Navigate("/movies")} color="inherit">Movies</Button>
+          <Button onClick={()=>Navigate("/colorGame")} color="inherit">Color Game</Button>
+          <Button onClick={()=>setMode(mode==="light" ? "dark" : "light")}color="inherit">Light Mode</Button>
+          
+
+        </Toolbar>
+      </AppBar>
+
+
       {/* Routing Componernts */}
 
       <Routes>
@@ -140,6 +154,8 @@ function App() {
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>
+    </Paper>
+  </ThemeProvider>
   );
 }
 

@@ -7,6 +7,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Navigate, useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
 
 export function Movie({ movie , id}) {
   // const movie = {
@@ -37,9 +38,10 @@ export function Movie({ movie , id}) {
         </p>
       </div>
 
-      
-      <button color="primary" onClick={() => setShow(!show)}>{show? <ExpandLessIcon />:<ExpandMoreIcon />} </button>
-      <InfoIcon onClick={()=>navigate(`/movies/${id}`)} />
+      <div className="buttonGroup">
+      <Button color="primary" onClick={() => setShow(!show)}>{show? <ExpandLessIcon />:<ExpandMoreIcon />} </Button>
+      <InfoIcon color="primary" onClick={()=>navigate(`/movies/${id}`)} />
+      </div>
       {/* ================ Conditional styling (styling only updated)=====================*/}
       {/* <p style ={summarytoggles} className="movie-sum">{movie.summary}</p> */}
 
