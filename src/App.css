@@ -3,7 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   /* text-align: center; */
-}
+} 
 .movie-poster{
   width: 350px;
   height: 640px;
@@ -59,4 +59,15 @@
 .board {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+.notfound{
+  text-align: center;
+}
+.movie-detailed-container {
+  max-width: 650px;
+  text-align: start;
+}
+.trailer {
+  display: block;
+  width: 100%
 }
