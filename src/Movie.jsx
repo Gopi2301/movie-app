@@ -9,7 +9,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Navigate, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 
-export function Movie({ movie , id}) {
+export function Movie({ movie , id, deleteButton}) {
   // const movie = {
   //   name: "Vikram",
   //   poster:
@@ -48,7 +48,7 @@ export function Movie({ movie , id}) {
       {/* ================ Conditional rendering (remove element from DOM)=================== */}
       {show ? <p className="movie-sum">{movie.summary}</p> : null}
       </CardContent>
-      <CardActions> <Counter /> </CardActions>
+      <CardActions> <Counter /> {deleteButton}</CardActions>
     </Card>
   );
 }
