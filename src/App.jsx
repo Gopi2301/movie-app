@@ -13,6 +13,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { AddMovie } from "./AddMovie";
 
 function App() {
  
@@ -127,7 +130,13 @@ function App() {
           <Button onClick={()=>Navigate("/tic-tak-toe")} color="inherit">Tic-Tak-Toe</Button>
           <Button onClick={()=>Navigate("/movies")} color="inherit">Movies</Button>
           <Button onClick={()=>Navigate("/colorGame")} color="inherit">Color Game</Button>
-          <Button onClick={()=>setMode(mode==="light" ? "dark" : "light")}color="inherit">Light Mode</Button>
+          <Button onClick={()=>Navigate("/movies/add")} color="inherit">Add Movie</Button>
+           
+          <Button sx={{marginLeft: "auto"}}onClick={()=>setMode(mode==="light" ? "dark" : "light")}
+          color="inherit" 
+          startIcon={mode==='dark' ? <Brightness7Icon /> : <Brightness4Icon / >}
+          >
+          {mode=="light" ? "dark" : "light"} Mode</Button>
           
 
         </Toolbar>
@@ -147,6 +156,8 @@ function App() {
           path="/movies/:id"
           element={<MovieDetails movieList={movieList} />}
         />
+        <Route path="/movies/add" element={<AddMovie movieList={movieList} setmovieList={setmovieList}/>} />
+
         <Route path="/colorGame" element={<ColorGame />} />
         {/* Redirect  films -> movies */}
         <Route path="/films" element={<Navigate replace to ="/movies" />} />
