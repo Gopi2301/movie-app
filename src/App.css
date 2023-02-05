@@ -21,7 +21,7 @@ body {
 }
 .movie-container{
   width:350px;
-  /* background: orange; */
+  background: orange;
   height: min-content;
 }
 .movie-title {
