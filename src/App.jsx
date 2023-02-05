@@ -157,7 +157,7 @@ function App() {
           path="/movies/:id"
           element={<MovieDetails  />}
         />
-        <Route path="/movies/add" element={<AddMovie movieList={movieList} setmovieList={setmovieList}/>} />
+        <Route path="/movies/add" element={<AddMovie />} />
 
         <Route path="/colorGame" element={<ColorGame />} />
         {/* Redirect  films -> movies */}
