@@ -16,7 +16,7 @@ import Paper from '@mui/material/Paper';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { AddMovie } from "./AddMovie";
-
+import { BasicForm } from "./basicForm";
 function App() {
  
   const [movieList, setmovieList] = useState([
@@ -164,6 +164,7 @@ function App() {
         <Route path="/films" element={<Navigate replace to ="/movies" />} />
         {/* 404 Error Pages using ( * ) */}
         <Route path="*" element={<Notfound />} />
+        <Route path="/basicform" element={<BasicForm />} />
       </Routes>
     </div>
     </Paper>
@@ -171,4 +172,6 @@ function App() {
   );
 }
 
+
 export default App;
+
