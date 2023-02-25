@@ -2,13 +2,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import { useEffect } from "react";
+import { API } from "./global";
 
 
 export function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] =useState({})
   useEffect(()=>{
-    fetch(`https://63d814e75dbd72324432fa01.mockapi.io/movies/${id}`)
+    fetch(`${API}/movies/${id}`)
       .then((data) => data.json())
       .then((mvs) => setMovie(mvs));
   }, [id]);

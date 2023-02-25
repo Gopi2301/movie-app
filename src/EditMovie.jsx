@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { API } from "./global";
 
 const formValidationSchema =yup.object({
   name : yup.string().required(),
@@ -17,7 +18,7 @@ export function EditMovie() {
   const { id } = useParams();
   const [movie, setMovie] =useState(null)
   useEffect(()=>{
-    fetch(`https://63d814e75dbd72324432fa01.mockapi.io/movies/${id}`)
+    fetch(`${API}/movies/${id}`)
       .then((data) => data.json())
       .then((mvs) => setMovie(mvs));
   }, [id]);
@@ -44,7 +45,7 @@ function EditMovieForm({movie}){
   const navigate = useNavigate();
     const updatedMovie = async (updateMovie) => {
       console.log(updateMovie);
-      await fetch  (`https://63d814e75dbd72324432fa01.mockapi.io/movies/${movie.id}`, {
+      await fetch  (`${API}/movies/${movie.id}`, {
         method: "PUT",
         body: JSON.stringify(updateMovie),
         headers:{"Content-Type": "application/json",},
