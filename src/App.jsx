@@ -17,6 +17,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { AddMovie } from "./AddMovie";
 import { BasicForm } from "./basicForm";
+import { EditMovie } from "./EditMovie";
 function App() {
  
   const [movieList, setmovieList] = useState([
@@ -158,7 +159,7 @@ function App() {
           element={<MovieDetails  />}
         />
         <Route path="/movies/add" element={<AddMovie />} />
-
+        <Route path="/movies/edit/:id" element={<EditMovie/>}/>
         <Route path="/colorGame" element={<ColorGame />} />
         {/* Redirect  films -> movies */}
         <Route path="/films" element={<Navigate replace to ="/movies" />} />
