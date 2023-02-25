@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -12,26 +12,41 @@ const formValidationSchema =yup.object({
   summary : yup.string() .min(20) .required(),
   trailer : yup.string() .min(20) .url(),
 })
-export function AddMovie() {
+
+export function EditMovie() {
+  const { id } = useParams();
+  const [movie, setMovie] =useState(null)
+  useEffect(()=>{
+    fetch(`https://63d814e75dbd72324432fa01.mockapi.io/movies/${id}`)
+      .then((data) => data.json())
+      .then((mvs) => setMovie(mvs));
+  }, [id]);
+  console.log(movie)
+  return(
+   movie ? <EditMovieForm movie={movie} />: <h2>Loading...</h2>
+  )
+}
+
+function EditMovieForm({movie}){
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = useFormik({
     initialValues: {
-      name: "",
-      poster: "",
-      rating: "",
-      summary: "",
-      trailer: "",
+      name: movie.name,
+      poster: movie.poster,
+      rating: movie.rating,
+      summary: movie.summary,
+      trailer: movie.trailer,
     },
     validationSchema : formValidationSchema,
-    onSubmit: (newMovie) => addMovie(newMovie),
+    onSubmit: (updateMovie) => updatedMovie(updateMovie),
     
   });
   //  
   const navigate = useNavigate();
-    const addMovie = async (newMovie) => {
-      console.log(newMovie);
-      await fetch  ("https://63d814e75dbd72324432fa01.mockapi.io/movies", {
-        method: "POST",
-        body: JSON.stringify(newMovie),
+    const updatedMovie = async (updateMovie) => {
+      console.log(updateMovie);
+      await fetch  (`https://63d814e75dbd72324432fa01.mockapi.io/movies/${movie.id}`, {
+        method: "PUT",
+        body: JSON.stringify(updateMovie),
         headers:{"Content-Type": "application/json",},
       });
       navigate('/movies')
@@ -50,7 +65,6 @@ export function AddMovie() {
         error ={touched.name && errors.name ? true :false}
         helperText={touched.name && errors.name ? errors.name : null}
       />
-      
       <TextField
         name="rating"
         onBlur={handleBlur}
@@ -94,7 +108,7 @@ export function AddMovie() {
         helperText={touched.trailer && errors.trailer ? errors.trailer : null}
       />
 
-      <Button  type="submit " variant="contained">Add Movie</Button>
+      <Button  type="submit " color="success" variant="contained">Save</Button>
       {/* <button >Add Movie</button> */}
     </form>
   );
